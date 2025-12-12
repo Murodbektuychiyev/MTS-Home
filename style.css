@@ -1,0 +1,472 @@
+/* style.css - To'liq va Yakuniy Versiya (Har bir element uchun Animatsiya va Hover) */
+
+/* 1. Global Sozlamalar va Animatsiya Qoidalari */
+:root {
+    --google-blue: #1a73e8; /* Asosiy havolalar va ikonka ranggi */
+    --google-green: #34a853; /* Ijobiy harakat tugmalari uchun */
+    --text-primary: #202124; /* Asosiy matn ranggi */
+    --text-secondary: #5f6368; /* Ikkilamchi matn / subtitle ranggi */
+    --background-main: #f1f3f4; /* Yumshoq kulrang sahifa foni */
+    --card-background: #ffffff; /* Kartochkalar foni */
+    --border-subtle: #dadce0; /* Yengil chiziqlar */
+    --shadow-depth: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); 
+    --transition-speed: 0.3s; /* Silliq o'tish tezligi */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background-main);
+}
+
+/* Barcha interaktiv/kartochka elementlarga silliq o'tishni qo'shish */
+a, button, .action-btn, .image-item, .amenities-list li, .carousel-control, section {
+    transition: all var(--transition-speed) ease-in-out; 
+}
+
+.container {
+    max-width: 950px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Keyframes (Animatsiya Qoidalari) */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* 2. Bosh Sarlavha (Main Header) */
+.main-header {
+    background-color: var(--card-background);
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-depth);
+    text-align: center;
+    animation: fadeInDown 0.8s ease-out; 
+}
+
+.main-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.8em;
+    color: var(--google-blue);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* Harakat Tugmalari (Actions) */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.action-btn {
+    text-decoration: none;
+    background-color: var(--card-background);
+    color: var(--google-blue);
+    border: 1px solid var(--border-subtle);
+    padding: 12px 25px;
+    border-radius: 24px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn:hover {
+    background-color: #f6f9fe;
+    border-color: #c5daff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* 3. Umumiy Bo'lim Stili (Card Style) */
+section {
+    background-color: var(--card-background);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 1.7em;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+}
+
+/* Konteyner ichidagi bo'limlarning ketma-ket chiqish animatsiyasi */
+.container > section {
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0; 
+}
+.contact-info { animation-delay: 0.3s; }
+.amenities-section { animation-delay: 0.6s; }
+.disclaimer-section { animation-delay: 0.9s; }
+
+
+/* 4. Aloqa va Manzil */
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    font-size: 1em;
+    padding: 5px 0;
+}
+
+.info-item i {
+    color: var(--google-blue);
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+    font-size: 1.3em;
+    line-height: 1.6;
+}
+
+.info-item a {
+    color: var(--google-blue);
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+}
+
+/* Telefon raqamiga yashirin chiziq effekti (Hover) */
+.info-item a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--google-green);
+    transition: width var(--transition-speed) ease;
+    -webkit-transition: width var(--transition-speed) ease;
+}
+
+.info-item a:hover:after {
+    width: 100%;
+    left: 0;
+    background: var(--google-green);
+}
+
+.info-item a:hover {
+    color: var(--google-green);
+}
+
+.map-embed {
+    margin-top: 25px;
+}
+
+.map-embed iframe {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.map-embed iframe:hover {
+    box-shadow: 0 0 15px rgba(26, 115, 232, 0.5); 
+    transform: scale(1.005);
+}
+
+
+/* 5. Galereya (Carousel) */
+.gallery-section {
+    margin: 30px auto 20px auto;
+    max-width: 950px;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0s; 
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+}
+
+.image-carousel {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.image-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.image-item {
+    min-width: calc(100% - 40px);
+    scroll-snap-align: start;
+    position: relative;
+    height: 450px;
+    background-color: var(--background-main);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.image-item:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.image-item:hover img {
+    transform: scale(1.05); 
+}
+
+.video-icon {
+    font-size: 3.5em;
+    color: var(--card-background);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video-icon:hover {
+    background: var(--google-blue); 
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* Karusel Boshqaruvlari */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.5em;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control:hover {
+    background-color: var(--google-blue);
+    color: var(--card-background);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* Upload tugmasini yashirish talabi */
+.upload-btn {
+    display: none;
+}
+
+/* 6. Qulayliklar (Amenities) */
+.amenities-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 12px;
+}
+
+.amenities-list li {
+    background-color: #e8f0fe;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Qulaylik kartochkasi uchun yaltirash effekti (Hover) */
+.amenities-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); 
+    transition: left 0.7s ease-out;
+}
+
+.amenities-list li:hover::before {
+    left: 100%;
+}
+
+.amenities-list li:hover {
+    background-color: #c5daff; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.amenities-list li i {
+    color: var(--google-blue);
+    margin-right: 15px;
+    font-size: 1.5em;
+}
+
+.more-info-link {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.more-info-link a {
+    color: var(--google-blue);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.more-info-link a:hover {
+    color: var(--google-green);
+    letter-spacing: 1px;
+}
+
+
+/* 7. Izoh Bo'limi */
+.author-info {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.disclaimer-section:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: scale(1.005);
+}
+
+.disclaimer-text {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    border-left: 4px solid var(--google-blue);
+    padding-left: 15px;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* 8. Pastki Qism (Footer) */
+footer {
+    position: static;
+    margin-top: 30px;
+    border-top: 1px solid var(--border-subtle);
+    background-color: var(--card-background);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    animation: fadeInUp 1.2s ease-out; 
+}
+
+footer p {
+    transition: color 0.3s;
+}
+
+footer:hover p {
+    color: var(--google-blue);
+}
+
+
+/* 9. Responsiveness (Mobil qurilmalar uchun) */
+@media (max-width: 768px) {
+    .container {
+        margin: 15px auto;
+    }
+
+    .main-header h1 {
+        font-size: 2.2em;
+    }
+
+    /* Mobil qurilmalarda animatsiyani o'chirish tezlik uchun */
+    .main-header, .container > section, .gallery-section, footer {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .gallery-section {
+        margin: 15px;
+        padding: 20px;
+    }
+    
+    section {
+        padding: 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+    
+    .amenities-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-item {
+        min-width: 100%;
+        height: 300px;
+    }
+
+    .prev-btn, .next-btn {
+        padding: 8px;
+        width: 40px;
+        height: 40px;
+    }
+}
